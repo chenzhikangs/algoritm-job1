@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+int count;
+void recursive(int n)
+{
+    int i;
+    if(n==1)//当n=1时，即为已经算出了一次分解因式，所以累计加一
+        count++;
+    for(i=2;i<=n;i++)//从2到12每个数都进行遍历
+    {
+	    if(n%i==0)//当n%i的模为0，即为可以分解的数
+	        recursive(n/i);//进行分解，递归遍历下一次
+		//每次分解到1时，既可以算是一次分解式已经递归出来了。
+    }
+}
+
+int main()
+{
+	int n;//定义一个正整数
+	while(scanf("%d",&n)!=EOF){//输入n，当输入不出错时进行下一步
+		count=0;//count计数器归0
+		recursive(n);//进行recursive
+		printf ("%d\n",count);//输出计数
+	}
+
+	return 0;
+}
