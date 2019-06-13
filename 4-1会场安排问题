@@ -1,0 +1,29 @@
+package test1;
+import java.util.*;
+public class Txsf {
+	public static void main(String[] args) {
+        Scanner sr = new Scanner(System.in);
+        int n = sr.nextInt();//输入要安排的活动
+        int a[] = new int [n];//储存开始时间
+        int b[] = new int [n];//储存结束时间
+        for(int i=0;i<n;i++) {//输入开始时间与结束时间
+            a[i]=sr.nextInt();
+            b[i]=sr.nextInt();
+        }
+        Arrays.sort(a);//排列
+        Arrays.sort(b);//排列
+        Greedy(n,a,b);//运行方法Greedy
+    }
+    private static void Greedy(int n,int start[],int end[]){
+        int j=0;
+        int count = 0;//记录安排的最少的会场数
+        for (int i=0;i<n;i++){
+            if (start[i]<end[j]){//如果前一个结束时间大于后一个的开始时间，说明后一个活动不能与前一个活动相容
+               count++;//增加一个新的会场
+            }else{
+                j++;//否则后一个活动加到前一个活动
+            }
+        }
+            System.out.println(count);
+    }
+}
